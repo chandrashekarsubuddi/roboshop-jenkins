@@ -1,3 +1,8 @@
+- name: Create Folder Config file
+  ansible.builtin.template:
+    src: folder.xml
+    dest: /tmp/folder.xml
+
 - name: Create Folder - "{{ item.dir }}"
   community.general.jenkins_job:
     config: "{{ lookup('file', '/tmp/folder.xml') }}"
@@ -6,6 +11,11 @@
     user: admin
     password: "{{jenkins_password}}"
   loop: "{{ folders }}"
+
+- name: Create Config file
+  ansible.builtin.template:
+    src: job.xml
+    dest: /tmp/job.xml
 
 - name: Create Pipeline Jobs
   ansible.builtin.include_tasks: pipeline.yml
