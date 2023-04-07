@@ -11,7 +11,7 @@
   debug:
     msg: "{{out}}"
 
-- name: Create Config file
+- name: Create Config file - {{item.dir}}/{{item.name}}
   ansible.builtin.template:
     src: m-job.xml
     dest: /tmp/m-job.xml
